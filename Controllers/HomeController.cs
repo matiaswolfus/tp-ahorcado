@@ -12,11 +12,37 @@ public class HomeController : Controller
     {
         _logger = logger;
     }
-    public IActionResult compararLetra (char letra)
+    public IActionResult compararLetra(char letra)
     {
-       juegoAhorcado.matchLetra(letra); 
+        ViewBag.intentos = juegoAhorcado.intentos;
+       bool termine = juegoAhorcado.matchLetra(letra);
+     if (termine)
+     {
+        return View ("Ganaste");
+     } else 
+     {
+        return View ("Juego");
+     }
+    }
+    public IActionResult matchPalabra(string palabra)
+    {
+        ViewBag.intentos = juegoAhorcado.intentos;
+        bool termine = juegoAhorcado.matchPalabra(palabra);
+        if(termine)
+        {
+            return View ("Ganaste");
 
-       return View ()
+        }else
+        {
+            return View("Perdiste");
+        }
+    }
+    public IActionResult completarPalabraParcial(char letra)
+    {   
+        juegoAhorcado.completarPalabraParcial(letra);
+        ViewBag.intentos = juegoAhorcado.intentos;
+
+        return View("Juego");
     }
 
     public IActionResult Index()

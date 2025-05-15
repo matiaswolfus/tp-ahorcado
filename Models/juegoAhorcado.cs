@@ -1,6 +1,6 @@
 namespace TP_AHORCADO.Models;
 
-static public class ahorcado
+public static class juegoAhorcado
 {
     static public string palabra = "natalicio";
 
@@ -8,7 +8,7 @@ static public class ahorcado
 
    
     static public string palabraParcial = "_________" ;
-    static public int intentos;
+    static public int intentos = 0 ;
 
 
 
@@ -22,9 +22,13 @@ static public class ahorcado
         {
             if(letra == item) 
             {
-                coincide = true;
+               
                 completarPalabraParcial(letra);
             }
+        }
+        if (palabra == palabraParcial)
+        {
+             coincide = true;
         }
         return coincide;
 	}
