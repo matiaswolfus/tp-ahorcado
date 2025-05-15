@@ -12,6 +12,16 @@ public class HomeController : Controller
     {
         _logger = logger;
     }
+
+
+    public ActionResult Jugar ()
+    {
+        ViewBag.palabra = juegoAhorcado.palabra;
+        ViewBag.palabraParcial = juegoAhorcado.palabraParcial;
+        ViewBag.intentos = juegoAhorcado.intentos;
+        ViewBag.letrasUsadas = juegoAhorcado.letrasUsadas;
+        return View("Juego");
+    }
     public IActionResult compararLetra(char letra)
     {
         ViewBag.intentos = juegoAhorcado.intentos;
