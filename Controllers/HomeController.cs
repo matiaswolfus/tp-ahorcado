@@ -12,6 +12,12 @@ public class HomeController : Controller
     {
         _logger = logger;
     }
+    public IActionResult compararLetra (char letra)
+    {
+       juegoAhorcado.matchLetra(letra); 
+
+       return View ()
+    }
 
     public IActionResult Index()
     {
