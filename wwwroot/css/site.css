@@ -1,19 +1,38 @@
-html {
-  font-size: 14px;
-  min-height: 100%;
+
+h1 
+{
+  text-align: center;
+}
+header 
+{
+  background-color: lightpink;
+  width: 100%;
+  float: right;
+  border: solid 1px lightcoral;
+}
+p 
+{
+  text-align: center;
+  font-style: italic;
+  text-shadow: #f8f9fa;
+  text-decoration: underline;
+  text-decoration: solid;
+
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+img {
+  height: auto; 
+  width: 100%; 
+  max-height: 150px; 
 }
+div 
+{
+  border: 30%;
 
-body {
-  margin: 10px;
-  padding: 10px;
+ float: right;
+  border-radius: 5px 5px 5px 5px;
+  border: 1px solid lightcoral;
 }
-
 
 footer {
   margin-top: 10px;

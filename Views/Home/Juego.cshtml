@@ -1,9 +1,24 @@
 
-<h1>@ViewBag.palabraParcial</h1>
-<h2>Intentos: @ViewBag.intentos</h2>
-<h2>Letras Usadas : @ViewBag.letrasUsadas</h2>
 
-<form action='@Url.Action("compararLetra", "Home")' method ="post">
-    Letra <input type = "text" name ="letra">
-    <input type= "submit"
+<div>
+    <h1>@ViewBag.palabraParcial</h1>
+<h2>Intentos: @ViewBag.intentos</h2>
+<h2>Letras Usadas :</h2>
+@foreach (char item in ViewBag.letrasUsadas)
+    {
+        <h2>@item</h2>
+    }
+
+
+    <form action='@Url.Action("compararLetra", "Home")' method ="post">
+    letra <input type = "text" name ="letra">
+    <input type= "submit" value = "Enviar" >
 </form>
+
+<form action='@Url.Action("matchPalabra","Home")' method="post">
+    palabra <input type="text" name = "Palabra">
+     <input type= "submit" value = "Enviar" >
+</form> 
+</div>
+
+

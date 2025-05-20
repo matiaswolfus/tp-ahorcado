@@ -28,10 +28,11 @@ public class HomeController : Controller
        bool termine = juegoAhorcado.matchLetra(letra);
      if (termine)
      {
+        ViewBag.palabra = juegoAhorcado.palabra;
         return View ("Ganaste");
      } else 
      {
-        return View ("Juego");
+       return RedirectToAction("Jugar");
      }
     }
     public IActionResult matchPalabra(string palabra)
@@ -40,10 +41,12 @@ public class HomeController : Controller
         bool termine = juegoAhorcado.matchPalabra(palabra);
         if(termine)
         {
+            ViewBag.palabra = juegoAhorcado.palabra;
             return View ("Ganaste");
 
         }else
         {
+            ViewBag.palabra = juegoAhorcado.palabra;
             return View("Perdiste");
         }
     }
