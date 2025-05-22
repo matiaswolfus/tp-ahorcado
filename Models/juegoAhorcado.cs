@@ -1,20 +1,22 @@
 namespace TP_AHORCADO.Models;
 
-public static class juegoAhorcado
+public class juegoAhorcado
 {
-    static public string palabra = "natalicio";
+     public string palabra = "natalicio";
 
-    static public List <char> letrasUsadas = new List<char> ();
+     public List <char> letrasUsadas = new List<char> ();
 
    
-    static public string palabraParcial = "_________" ;
-    static public int intentos = 0 ;
+     public string palabraParcial = "_________" ;
+     public int intentos = 0 ;
 
 
 
 
-    public static bool matchLetra(char letra)
+    public  bool matchLetra(char letra)
     {
+
+
         letrasUsadas.Add(letra);
         intentos++;
         bool coincide = false;
@@ -33,7 +35,7 @@ public static class juegoAhorcado
         return coincide;
 	}
 
-    public static string completarPalabraParcial (char letra) 
+    public  string completarPalabraParcial (char letra) 
     {
         string auxiliar="";
         for(int i = 0; i < palabra.Count(); i++)
@@ -53,7 +55,7 @@ public static class juegoAhorcado
 
     }
     
-    public static bool matchPalabra(string palabraIngresada)
+    public  bool matchPalabra(string palabraIngresada)
     {
         bool arriesga = false;
         

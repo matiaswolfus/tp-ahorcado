@@ -16,19 +16,25 @@ public class HomeController : Controller
 
     public ActionResult Jugar ()
     {
-        ViewBag.palabra = juegoAhorcado.palabra;
-        ViewBag.palabraParcial = juegoAhorcado.palabraParcial;
-        ViewBag.intentos = juegoAhorcado.intentos;
-        ViewBag.letrasUsadas = juegoAhorcado.letrasUsadas;
+        
+        juegoAhorcado juego = new juegoAhorcado();
+        HttpContext.Session.SetString("juegoDelAhorcado", objeto.ObjetoATexto(juego));
+        ViewBag.palabra = juego.palabra;
+        ViewBag.palabraParcial = juego.palabraParcial;
+        ViewBag.intentos = juego.intentos;
+        ViewBag.letrasUsadas = juego.letrasUsadas;
         return View("Juego");
     }
     public IActionResult compararLetra(char letra)
     {
-        ViewBag.intentos = juegoAhorcado.intentos;
-       bool termine = juegoAhorcado.matchLetra(letra);
+
+        juegoAhorcado juego = new juegoAhorcado();
+        HttpContext.Session.SetString("compararL", objeto.ObjetoATexto(juego));
+        ViewBag.intentos = juego.intentos;
+       bool termine = juego.matchLetra(letra);
      if (termine)
      {
-        ViewBag.palabra = juegoAhorcado.palabra;
+        ViewBag.palabra = juego.palabra;
         return View ("Ganaste");
      } else 
      {
@@ -37,23 +43,25 @@ public class HomeController : Controller
     }
     public IActionResult matchPalabra(string palabra)
     {
-        ViewBag.intentos = juegoAhorcado.intentos;
-        bool termine = juegoAhorcado.matchPalabra(palabra);
+        juegoAhorcado juego = new juegoAhorcado();
+        ViewBag.intentos = juego.intentos;
+        bool termine = juego.matchPalabra(palabra);
         if(termine)
         {
-            ViewBag.palabra = juegoAhorcado.palabra;
+            ViewBag.palabra = juego.palabra;
             return View ("Ganaste");
 
         }else
         {
-            ViewBag.palabra = juegoAhorcado.palabra;
+            ViewBag.palabra = juego.palabra;
             return View("Perdiste");
         }
     }
     public IActionResult completarPalabraParcial(char letra)
     {   
-        juegoAhorcado.completarPalabraParcial(letra);
-        ViewBag.intentos = juegoAhorcado.intentos;
+        juegoAhorcado juego = new juegoAhorcado();
+        juego.completarPalabraParcial(letra);
+        ViewBag.intentos = juego.intentos;
 
         return View("Juego");
     }
