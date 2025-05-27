@@ -28,22 +28,28 @@ public class HomeController : Controller
     public IActionResult compararLetra(char letra)
     {
 
-        juegoAhorcado juego = new juegoAhorcado();
-        HttpContext.Session.SetString("compararL", objeto.ObjetoATexto(juego));
+        juegoAhorcado juego = objeto.TextoAObjeto<juegoAhorcado>(HttpContext.Session.GetString("juegoDelAhorcado"));
         ViewBag.intentos = juego.intentos;
        bool termine = juego.matchLetra(letra);
+       HttpContext.Session.SetString("juegoDelAhorcado", objeto.ObjetoATexto(juego));
+
      if (termine)
      {
         ViewBag.palabra = juego.palabra;
         return View ("Ganaste");
      } else 
      {
-       return RedirectToAction("Jugar");
+        ViewBag.palabra = juego.palabra;
+        ViewBag.palabraParcial = juego.palabraParcial;
+        ViewBag.intentos = juego.intentos;
+        ViewBag.letrasUsadas = juego.letrasUsadas;
+        return View("Juego");
      }
     }
     public IActionResult matchPalabra(string palabra)
     {
-        juegoAhorcado juego = new juegoAhorcado();
+        juegoAhorcado juego = objeto.TextoAObjeto<juegoAhorcado>(HttpContext.Session.GetString("juegoDelAhorcado"));
+
         ViewBag.intentos = juego.intentos;
         bool termine = juego.matchPalabra(palabra);
         if(termine)
@@ -60,6 +66,7 @@ public class HomeController : Controller
     public IActionResult completarPalabraParcial(char letra)
     {   
         juegoAhorcado juego = new juegoAhorcado();
+        HttpContext.Session.SetString("compararL", objeto.ObjetoATexto(juego));
         juego.completarPalabraParcial(letra);
         ViewBag.intentos = juego.intentos;
 

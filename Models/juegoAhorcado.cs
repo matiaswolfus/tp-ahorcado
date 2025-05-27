@@ -1,13 +1,18 @@
 namespace TP_AHORCADO.Models;
-
+using Newtonsoft.Json;
 public class juegoAhorcado
 {
+
+    [JsonProperty]
      public string palabra = "natalicio";
 
+    [JsonProperty]
      public List <char> letrasUsadas = new List<char> ();
 
-   
+   [JsonProperty]
      public string palabraParcial = "_________" ;
+    
+    [JsonProperty]
      public int intentos = 0 ;
 
 
